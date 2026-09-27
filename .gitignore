@@ -6,3 +6,5 @@
 /RizTechBookStore/.vs/RizTechBookStore.slnx
 /RizTechBookStore/RizTechBookStore/bin/Debug/netcoreapp3.1
 /RizTechBookStore/RizTechBookStore/obj
+/RizTechBookStore/.vs
+/RizTechBookStore/RizTechBookStore/wwwroot
