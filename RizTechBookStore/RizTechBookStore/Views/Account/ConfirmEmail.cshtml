@@ -1,0 +1,79 @@
+﻿@model RizTechBookStore.Models.EmailConfirmModel
+@{
+    ViewData["Title"] = "Confirm Email";
+}
+<section class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h1 class="h5 mb-0">@ViewData["Title"]</h1>
+                </div>
+                <div class="card-body">
+                    @if (Model == null)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            Required data is missing. Please retry or contact support if the problem persists.
+                        </div>
+                    }
+                    else
+                    {
+                        @* Verification result *@
+                        @if (Model.EmailVerified)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Your email <strong>@Model.Email</strong> has been verified successfully.
+                            </div>
+                        }
+                        else if (Model.IsConfirmed)
+                        {
+                            <div class="alert alert-info" role="alert">
+                                The email <strong>@Model.Email</strong> is already confirmed.
+                            </div>
+                        }
+                        else if (Model.VerificationAttempted)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                We were unable to confirm your email. The confirmation link may have expired or is invalid.
+                            </div>
+                        }
+
+                        @* Email sent status or resend form *@
+                        @if (Model.EmailSent)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                A confirmation email has been sent to <strong>@Model.Email</strong>. Please check your inbox and spam folder.
+                            </div>
+
+                            <form asp-action="ConfirmEmail" method="post" class="mt-3">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" asp-for="Email" />
+                                <p class="mb-2">If you haven't received the email, click the button below to resend the confirmation email.</p>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-outline-primary">Resend confirmation email</button>
+                                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Return to home</a>
+                                </div>
+                            </form>
+                        }
+                        else if (!Model.EmailVerified && !Model.IsConfirmed && !Model.EmailSent)
+                        {
+                            <form asp-action="ConfirmEmail" method="post" class="mt-3">
+                                @Html.AntiForgeryToken()
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                                <input type="hidden" asp-for="Email" />
+                                <p class="mb-2">Didn't receive the email or deleted it by mistake? You can resend the confirmation email.</p>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-primary">Resend confirmation email</button>
+                                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Return to home</a>
+                                </div>
+                            </form>
+                        }
+                    }
+
+                    <hr />
+                    <p class="small text-muted mb-0">If you continue to have trouble, contact support for assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

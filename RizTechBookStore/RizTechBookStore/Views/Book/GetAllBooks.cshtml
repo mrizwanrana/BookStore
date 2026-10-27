@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BookModel>
+
+@{
+    ViewData["Title"] = "All Books";
+}
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">All Books</h1>
+
+    <div class="row">
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var book in Model)
+                {
+                <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                    <partial name="_bookThumbnail" model="book" />
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No books available.
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

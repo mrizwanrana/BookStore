@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+@inject RizTechBookStore.Repository.IBookRepository BookRepository
+
+@section breadcrumb
+{
+    <nav class="container" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Index
+            </li>
+        </ol>
+    </nav>
+}
+
+<section class="text-center jumbotron">
+    <div class="container">
+
+        <h1 class="display-4">Welcome to Book Store</h1>
+
+        <p class="lead text-dark">
+            Discover our top books and explore your next great read.
+        </p>
+
+        <p>
+            <a href="/Book/GetAllBooks" class="btn btn-primary my-2">
+                Search Books
+            </a>
+        </p>
+
+    </div>
+</section>
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+        <h3 class="mb-4">Top Books</h3>
+
+        @*@await Component.InvokeAsync("TopBooks", new { count = 3 })*@
+
+        <vc:top-books count="3"></vc:top-books>
+
+        
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            // Your JavaScript code here
+
+        });
+    </script>
+}

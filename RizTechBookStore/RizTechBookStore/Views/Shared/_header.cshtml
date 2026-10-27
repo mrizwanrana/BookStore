@@ -1,0 +1,65 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration _configuration
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow fixed-top bg-light navbarcolor">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="~/images/logo.png" width="30" height="30" asp-append-version="true" />
+                @_configuration["AppName"]
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+
+                <!-- Left Side Links -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="AboutUs">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="ContactUs">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Book" asp-action="GetAllBooks">All Books</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Book" asp-action="AddNewBook">Add New Book</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Financial" asp-controller="Home" asp-action="Graph">Financial</a>
+                    </li>
+                </ul>
+
+                <!-- Right Side Buttons -->
+                <ul class="navbar-nav">
+                    <partial name="_LoginInfo" />
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
